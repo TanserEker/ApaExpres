@@ -87,6 +87,13 @@ export type DeliveryAddressRow = {
   created_at: string;
 };
 
+export type AdminRow = {
+  id: string;
+  auth_user_id: string;
+  name: string;
+  created_at: string;
+};
+
 export type OrderStatus = "received" | "preparing" | "on_the_way" | "delivered" | "cancelled";
 export type PaymentMethod = "cash" | "card" | "credit_balance";
 
