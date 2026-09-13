@@ -48,7 +48,7 @@ export default async function AccountPage() {
         <h2 className="font-medium text-[#0A2540]">Kredi bakiyesi</h2>
         <p className="text-3xl font-semibold text-[#0B4F8A]">{credit?.credit_balance ?? 0} bidon</p>
         {(transactions ?? []).length > 0 && (
-          <ul className="mt-2 flex flex-col gap-1 text-sm text-[#0A2540]/60">
+          <ul className="mt-2 flex flex-col gap-1 text-sm text-[#0A2540]/70">
             {(transactions ?? []).map((t) => (
               <li key={t.id}>
                 {new Date(t.created_at).toLocaleDateString("ro-RO")} · {t.type} · {t.quantity > 0 ? "+" : ""}
@@ -62,7 +62,7 @@ export default async function AccountPage() {
       <section className="flex flex-col gap-3">
         <h2 className="font-medium text-[#0A2540]">Kredi paketi satın al</h2>
         {(!creditPacks || creditPacks.length === 0) ? (
-          <p className="text-[#0A2540]/60">Şu an aktif kredi paketi yok.</p>
+          <p className="text-[#0A2540]/70">Şu an aktif kredi paketi yok.</p>
         ) : (
           <div className="flex flex-col gap-2">
             {creditPacks.map((plan) => (
@@ -75,7 +75,7 @@ export default async function AccountPage() {
       <section className="flex flex-col gap-3">
         <h2 className="font-medium text-[#0A2540]">Aboneliklerim</h2>
         {(!subscriptions || subscriptions.length === 0) ? (
-          <p className="text-[#0A2540]/60">Aktif bir aboneliğiniz yok. Checkout&apos;tan abone olabilirsiniz.</p>
+          <p className="text-[#0A2540]/70">Aktif bir aboneliğiniz yok. Checkout&apos;tan abone olabilirsiniz.</p>
         ) : (
           <div className="flex flex-col gap-2">
             {subscriptions.map((s) => (

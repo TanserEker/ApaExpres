@@ -26,11 +26,11 @@ export default async function CatalogPage() {
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-8 px-4 py-10">
       <div>
         <h1 className="text-2xl font-semibold text-[#0B4F8A]">{t("title")}</h1>
-        <p className="text-sm text-[#0A2540]/60">{t("quantityHint")}</p>
+        <p className="text-sm text-[#0A2540]/70">{t("quantityHint")}</p>
       </div>
 
       {!products || products.length === 0 ? (
-        <p className="text-[#0A2540]/60">{t("empty")}</p>
+        <p className="text-[#0A2540]/70">{t("empty")}</p>
       ) : (
         <ul className="flex flex-col gap-3">
           {products.map((product) => (

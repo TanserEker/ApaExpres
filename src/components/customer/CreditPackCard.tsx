@@ -14,7 +14,7 @@ export default function CreditPackCard({ plan }: { plan: SubscriptionPlanRow }) 
       <input type="hidden" name="planId" value={plan.id} />
       <div>
         <p className="font-medium text-[#0A2540]">{plan.pack_size} bidon</p>
-        <p className="text-[#0A2540]/60">
+        <p className="text-[#0A2540]/70">
           {plan.unit_price.toFixed(2)} RON/bidon · toplam {plan.total_price?.toFixed(2)} RON
         </p>
       </div>

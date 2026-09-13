@@ -31,7 +31,7 @@ export default async function AdminOverviewPage() {
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Genel Bakış</h1>
         <form action={logoutAdmin}>
-          <button type="submit" className="text-sm text-[#0A2540]/60 underline">
+          <button type="submit" className="text-sm text-[#0A2540]/70 underline">
             Çıkış yap
           </button>
         </form>
@@ -40,7 +40,7 @@ export default async function AdminOverviewPage() {
         {stats.map((s) => (
           <div key={s.label} className="rounded-lg border border-[#0B4F8A]/15 bg-white p-4">
             <p className="text-2xl font-semibold text-[#0B4F8A]">{s.value}</p>
-            <p className="text-sm text-[#0A2540]/60">{s.label}</p>
+            <p className="text-sm text-[#0A2540]/70">{s.label}</p>
           </div>
         ))}
       </div>

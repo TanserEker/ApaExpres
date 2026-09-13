@@ -9,7 +9,7 @@ export default function CartSummary() {
   const { items, setQuantity, removeItem, total } = useCart();
 
   if (items.length === 0) {
-    return <p className="text-[#0A2540]/60">{t("cartEmpty")}</p>;
+    return <p className="text-[#0A2540]/70">{t("cartEmpty")}</p>;
   }
 
   return (
@@ -29,7 +29,7 @@ export default function CartSummary() {
               <button
                 type="button"
                 onClick={() => setQuantity(item.productId, item.quantity - 2)}
-                className="text-xs text-[#0B4F8A]/70 underline"
+                className="text-xs text-[#0B4F8A] underline"
               >
                 −2
               </button>

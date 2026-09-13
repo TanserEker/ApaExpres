@@ -18,7 +18,7 @@ export default function ProductRow({ product }: { product: ProductRowType }) {
     <li className="flex items-center justify-between gap-4 rounded-lg border border-[#0B4F8A]/15 p-4">
       <div>
         <p className="font-medium text-[#0A2540]">{product.name}</p>
-        <p className="text-sm text-[#0A2540]/60">
+        <p className="text-sm text-[#0A2540]/70">
           {product.size_liters} L · {product.unit_price.toFixed(2)} RON
         </p>
       </div>

@@ -8,7 +8,7 @@ export default function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="border-t border-[#0B4F8A]/15 px-4 py-6 text-xs text-[#0A2540]/60 sm:px-8">
+    <footer className="border-t border-[#0B4F8A]/15 px-4 py-6 text-xs text-[#0A2540]/70 sm:px-8">
       <div className="mx-auto flex max-w-3xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p>© {new Date().getFullYear()} DEEF SRL — Apa Expres. {t("rights")}</p>
         <nav className="flex flex-wrap gap-3">

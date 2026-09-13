@@ -225,7 +225,7 @@ export default function CheckoutForm({ zones, addresses: initialAddresses, plans
             </label>
           </div>
 
-          <p className="text-sm text-[#0A2540]/60">{t("outsideHours")}</p>
+          <p className="text-sm text-[#0A2540]/70">{t("outsideHours")}</p>
 
           <div className="flex items-center justify-between font-medium text-[#0A2540]">
             <span>{t("total")}</span>
@@ -244,7 +244,7 @@ export default function CheckoutForm({ zones, addresses: initialAddresses, plans
       ) : (
         <section className="flex flex-col gap-3">
           {plans.length === 0 ? (
-            <p className="text-[#0A2540]/60">{t("noPlans")}</p>
+            <p className="text-[#0A2540]/70">{t("noPlans")}</p>
           ) : (
             <>
               <div className="flex flex-col gap-2">

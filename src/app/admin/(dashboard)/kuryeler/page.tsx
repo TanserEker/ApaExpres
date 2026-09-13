@@ -33,7 +33,7 @@ export default async function AdminDriversPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="font-medium text-[#0B4F8A]">Mevcut kuryeler</h2>
-        {(!drivers || drivers.length === 0) && <p className="text-[#0A2540]/60">Henüz kurye yok.</p>}
+        {(!drivers || drivers.length === 0) && <p className="text-[#0A2540]/70">Henüz kurye yok.</p>}
         <div className="flex flex-col gap-2">
           {(drivers ?? []).map((d) => (
             // @ts-expect-error - Supabase join tipi types.ts'te basitleştirilmiş değil, runtime şekli doğru

@@ -14,7 +14,7 @@ export default function DriverRow({
     <div className="flex items-center justify-between rounded-lg border border-[#0B4F8A]/15 bg-white p-4 text-sm">
       <div>
         <p className="font-medium text-[#0A2540]">{driver.name}</p>
-        <p className="text-[#0A2540]/60">
+        <p className="text-[#0A2540]/70">
           {driver.phone} · {driver.vehicles?.plate ?? "araç atanmadı"} · {driver.is_active ? "aktif" : "pasif"}
         </p>
       </div>

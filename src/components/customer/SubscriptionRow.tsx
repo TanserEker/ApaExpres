@@ -15,7 +15,7 @@ export default function SubscriptionRow({ subscription }: { subscription: Custom
     <div className="flex items-center justify-between rounded-lg border border-[#0B4F8A]/15 p-3 text-sm">
       <div>
         <p className="font-medium text-[#0A2540]">{subscription.frequency}x/hafta</p>
-        <p className="text-[#0A2540]/60">{subscription.status}</p>
+        <p className="text-[#0A2540]/70">{subscription.status}</p>
       </div>
       <div className="flex gap-2">
         {subscription.status !== "cancelled" && (

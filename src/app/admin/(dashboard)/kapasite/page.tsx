@@ -23,7 +23,7 @@ export default async function AdminCapacityPage() {
       <CapacitySlotForm zoneId={zoneId} />
       <div className="flex flex-col gap-2">
         {(!slots || slots.length === 0) && (
-          <p className="text-[#0A2540]/60">Henüz oluşturulmuş bir slot yok (ilk sipariş geldiğinde otomatik oluşur).</p>
+          <p className="text-[#0A2540]/70">Henüz oluşturulmuş bir slot yok (ilk sipariş geldiğinde otomatik oluşur).</p>
         )}
         {(slots ?? []).map((s) => (
           <div key={s.id} className="flex items-center justify-between rounded-lg border border-[#0B4F8A]/15 bg-white p-3 text-sm">

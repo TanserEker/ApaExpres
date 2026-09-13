@@ -21,7 +21,7 @@ export default async function OrdersPage() {
       <h1 className="text-2xl font-semibold text-[#0B4F8A]">{t("title")}</h1>
 
       {!orders || orders.length === 0 ? (
-        <p className="text-[#0A2540]/60">{t("empty")}</p>
+        <p className="text-[#0A2540]/70">{t("empty")}</p>
       ) : (
         <ul className="flex flex-col gap-3">
           {orders.map((order) => (
@@ -33,7 +33,7 @@ export default async function OrdersPage() {
                 <p className="font-medium text-[#0A2540]">
                   {new Date(order.created_at).toLocaleString("ro-RO")}
                 </p>
-                <p className="text-[#0A2540]/60">
+                <p className="text-[#0A2540]/70">
                   {t(`status.${order.status as OrderStatus}`)}
                 </p>
               </div>

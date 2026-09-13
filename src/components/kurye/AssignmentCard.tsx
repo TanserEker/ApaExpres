@@ -68,7 +68,7 @@ export default function AssignmentCard({ assignment, driverId }: { assignment: A
             : "adres yok"}
         </p>
         {address?.phone && <p className="text-[#0A2540]/70">Teslimat tel: {address.phone}</p>}
-        {address?.notes && <p className="text-[#0A2540]/50 italic">{address.notes}</p>}
+        {address?.notes && <p className="text-[#0A2540]/70 italic">{address.notes}</p>}
         <p className="mt-1 font-medium text-[#0B4F8A]">
           {order?.total_amount.toFixed(2)} RON · {order?.payment_method}
         </p>
@@ -87,7 +87,7 @@ export default function AssignmentCard({ assignment, driverId }: { assignment: A
 
         {assignment.status === "picked_up" && (
           <>
-            <label className="text-xs text-[#0A2540]/60">
+            <label className="text-xs text-[#0A2540]/70">
               Teslimat fotoğrafı (opsiyonel)
               <input type="file" accept="image/*" onChange={handleFileChange} disabled={uploading} className="block" />
             </label>

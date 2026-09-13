@@ -78,7 +78,7 @@ export default async function DriverDashboardPage() {
 
       <section className="flex flex-col gap-3">
         <h2 className="font-medium text-[#0A2540]">Atanan siparişler</h2>
-        {active.length === 0 && <p className="text-[#0A2540]/60">Şu an atanmış aktif sipariş yok.</p>}
+        {active.length === 0 && <p className="text-[#0A2540]/70">Şu an atanmış aktif sipariş yok.</p>}
         {active.map((a) => (
           <AssignmentCard key={a.id} assignment={a} driverId={driver.id} />
         ))}

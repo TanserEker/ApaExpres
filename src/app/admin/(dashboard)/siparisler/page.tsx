@@ -34,14 +34,14 @@ export default async function AdminOrdersPage({
       <h1 className="text-2xl font-semibold">Siparişler</h1>
 
       <div className="flex flex-wrap gap-2 text-sm">
-        <Link href="/admin/siparisler" className={!status ? "font-semibold text-[#0B4F8A]" : "text-[#0A2540]/60"}>
+        <Link href="/admin/siparisler" className={!status ? "font-semibold text-[#0B4F8A]" : "text-[#0A2540]/70"}>
           Hepsi
         </Link>
         {STATUSES.map((s) => (
           <Link
             key={s}
             href={`/admin/siparisler?status=${s}`}
-            className={status === s ? "font-semibold text-[#0B4F8A]" : "text-[#0A2540]/60"}
+            className={status === s ? "font-semibold text-[#0B4F8A]" : "text-[#0A2540]/70"}
           >
             {s}
           </Link>
@@ -50,7 +50,7 @@ export default async function AdminOrdersPage({
 
       <div className="flex flex-col gap-3">
         {(!orders || orders.length === 0) && (
-          <p className="text-[#0A2540]/60">Bu filtreye uyan sipariş yok.</p>
+          <p className="text-[#0A2540]/70">Bu filtreye uyan sipariş yok.</p>
         )}
         {(orders ?? []).map((order) => (
           // @ts-expect-error - Supabase join tipleri basitleştirilmiş types.ts'te yok, runtime şekli doğru

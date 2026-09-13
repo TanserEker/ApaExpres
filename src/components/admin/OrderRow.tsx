@@ -42,10 +42,10 @@ export default function OrderRow({
         <p className="font-medium text-[#0A2540]">
           {order.customers?.name ?? "?"} — {order.customers?.phone ?? ""}
         </p>
-        <p className="text-[#0A2540]/60">
+        <p className="text-[#0A2540]/70">
           {address ? `Blok ${address.block}${address.staircase ? `, Scară ${address.staircase}` : ""}, Kat ${address.floor ?? "-"}, Daire ${address.apartment}` : "adres yok"}
         </p>
-        <p className="text-[#0A2540]/60">
+        <p className="text-[#0A2540]/70">
           {new Date(order.created_at).toLocaleString("ro-RO")} · {order.total_amount.toFixed(2)} RON ·{" "}
           {order.payment_method} ·{" "}
           <span className="font-medium">{order.status}</span>
