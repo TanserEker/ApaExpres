@@ -52,6 +52,8 @@ listesini kapsar):
 | `0016_admin_siparis_kurye_rpc.sql` | `approve_order()`, `assign_driver()` |
 | `0017_teslimat_fotografi.sql` | `driver_assignments.delivery_photo_path`, `teslimat-fotograflari` storage bucket + RLS, `update_delivery_status()`'a fotoğraf desteği |
 | `0018_kurye_musteri_adres_erisimi.sql` | sürücünün kendine atanan siparişin müşteri/adres bilgisini görebilmesi için dar kapsamlı select policy'leri |
+| `0019_push_subscriptions.sql` | `push_subscriptions` (Web Push/VAPID abonelikleri, RLS ile sadece kendi aboneliği) |
+| `0020_fis_no_alani.sql` | `orders.receipt_number` (bon fiscal no) |
 
 Her tabloda RLS **açık**. Katalog tabloları (`zones`, `products`, `subscription_plans`) ve
 `capacity_slots` dışında hiçbir tabloda anon/authenticated için insert/update/delete
@@ -77,6 +79,15 @@ locale yönlendirmesini hem Supabase oturum yenilemeyi hem de rol koruma guard'l
 segmentinin dışında (tek dilli iç panel) — bu yüzden kendi ayrı root layout'una sahip
 (`src/app/admin/layout.tsx`), bkz. Next.js "multiple root layouts" deseni.
 
+## PWA + Web Push
+
+`src/app/manifest.ts` + `public/sw.js` ile "Add to Home Screen" desteği; ikonlar
+şu an yer tutucu (basit bir su damlası, gerçek marka logosu geldiğinde
+`public/icon-*.png` değiştirilmeli). Sipariş durum bildirimleri opsiyonel Web
+Push (VAPID, `src/lib/web-push.ts`) ile gönderiliyor — `NEXT_PUBLIC_VAPID_PUBLIC_KEY`/
+`VAPID_PRIVATE_KEY` env değişkenleri tanımlı değilse sessizce devre dışı kalır,
+siteyi bloklamaz (`npx web-push generate-vapid-keys` ile üretilir, ücretsiz).
+
 ## Mevcut durum
 
 - [x] Next.js App Router projesi kuruldu (`create-next-app`, TypeScript + Tailwind + ESLint).
@@ -97,12 +108,22 @@ segmentinin dışında (tek dilli iç panel) — bu yüzden kendi ayrı root lay
       provizyonu, kapasite yönetimi), kurye arayüzü (atanan siparişler, durum
       güncelleme, opsiyonel teslimat fotoğrafı) tamamlandı — `npm run build`,
       `npm run lint` hatasız, tüm yeni RPC/RLS'ler yerel Postgres'te test edildi.
-- [ ] 0014-0018 migration'ları henüz canlıya uygulanmadı (Hakan uygulayacak) —
-      bu yüzden Görev 4/5/6'nın gerçek Supabase üzerinde uçtan uca doğrulaması
-      bekliyor.
+- [x] 0014-0018 canlıya uygulandı (storage bucket dahil) ve doğrulandı.
+- [x] PWA (manifest, service worker, yer tutucu ikonlar) + opsiyonel web push
+      bildirimi (sipariş durum değişikliklerinde), yasal sayfalar (T&C/Gizlilik/
+      Çerez — RO/EN/TR, ANPC/SOL linkleri) ve fiş/fatura no alanı (admin
+      siparişler sayfasında) tamamlandı.
+- [ ] 0019-0020 migration'ları henüz canlıya uygulanmadı (Hakan uygulayacak).
+- [ ] VAPID anahtarları (`NEXT_PUBLIC_VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY`)
+      canlı ortamda tanımlı değil — push bildirimleri env eklenene kadar sessizce
+      devre dışı kalır (bkz. `.env.example`).
 - [ ] subscription_plans satırları TASLAK ve `is_active = false` (bkz.
       `0015_abonelik_planlari_taslak_seed.sql`) — Tanser'in sıklık/fiyat/paket
       kararını bekliyor.
+- [ ] Yasal sayfa metinleri (bkz. `src/lib/legal/content.ts`) makul bir taslak —
+      canlıya tam açılmadan önce bir avukat/muhasebeci onayı önerilir.
+- [ ] Görev 10 (uçtan uca canlı test): Hakan canlı dağıtımdan sonra haber
+      verecek.
 
 ## Kurulum
 
