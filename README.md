@@ -43,6 +43,10 @@ listesini kapsar):
 | `0007_orders.sql` | `orders`, `order_items`, `order_status_history`, `payments` (+ `credit_transactions.order_id` için ertelenen FK) |
 | `0008_driver_assignments.sql` | `driver_assignments` |
 | `0009_bottle_stock_movements.sql` | `bottle_stock_movements` (bidon stok/depozito muhasebesi) |
+| `0010_ilk_faz_5l_katalog.sql` | `products.brand`, `zones.delivery_fee`, ilk faz 5L katalog verisi |
+| `0011_admin_rolu_ve_rls.sql` | `admins` tablosu + `is_admin()` (3. rol), sürücü için `update_delivery_status()` RPC'si |
+| `0012_teslimat_adresi_alanlari.sql` | `delivery_addresses.staircase` (scară) ve `.phone` — Cosmopolis adres formu için |
+| `0013_siparis_ve_abonelik_secimi_rpc.sql` | `create_order()` ve `select_subscription_plan()` RPC'leri |
 
 Her tabloda RLS **açık**. Katalog tabloları (`zones`, `products`, `subscription_plans`) ve
 `capacity_slots` dışında hiçbir tabloda anon/authenticated için insert/update/delete
@@ -53,7 +57,20 @@ policy'ler gözden geçirilip genişletilmeli.
 
 **Migration'lar henüz canlı bir Supabase projesine uygulanmadı** — sadece yerel bir Postgres
 16 üzerinde (auth şeması/rolleri taklit edilerek) sırayla çalıştırılıp doğrulandı; hem şema
-oluşturma hem de örnek insert/foreign key/check constraint testleri hatasız geçti.
+oluşturma hem de örnek insert/foreign key/check constraint testleri (RLS izolasyonu,
+`create_order`/`select_subscription_plan`/`update_delivery_status` RPC'leri dahil)
+hatasız geçti.
+
+## i18n
+
+`next-intl` ile kuruldu — `/ro /en /tr` URL segmenti (`src/i18n/routing.ts`), varsayılan
+dil RO. Mesaj dosyaları `messages/{locale}.json`. `src/proxy.ts` (Next.js 16'da
+`middleware.ts`'in yeni adı — bkz. `node_modules/next/dist/docs/.../version-16.md`) hem
+locale yönlendirmesini hem Supabase oturum yenilemeyi hem de rol koruma guard'larını
+(checkout/orders girişi gerektirir, `/[locale]/kurye/**` sürücü girişi gerektirir,
+`/admin/**` admin girişi gerektirir) tek yerde topluyor. `/admin` bilerek locale
+segmentinin dışında (tek dilli iç panel) — bu yüzden kendi ayrı root layout'una sahip
+(`src/app/admin/layout.tsx`), bkz. Next.js "multiple root layouts" deseni.
 
 ## Mevcut durum
 
@@ -61,9 +78,16 @@ oluşturma hem de örnek insert/foreign key/check constraint testleri hatasız g
 - [x] Supabase client/server/service boilerplate'i kuruldu.
 - [x] Tüm tablolar migration dosyaları olarak yazıldı, RLS iskeleti eklendi, yerel Postgres'te doğrulandı.
 - [x] `.env.example` eklendi.
-- [x] Boş bir `/admin` sayfası eklendi; `npm run dev`, `npm run build`, `npm run lint` hatasız.
-- [ ] Gerçek Supabase projesi henüz yok — migration'lar canlıya uygulanmadı.
-- [ ] Admin paneli, müşteri PWA akışı, sipariş oluşturma RPC'si, dispatch/atama mantığı henüz yazılmadı (sıradaki görevler).
+- [x] i18n (RO/EN/TR) kuruldu, 3 dilde anasayfa/katalog/checkout render oluyor.
+- [x] 3. rol (admin) şeması + RLS genişletmesi (`0011`), müşteri/sürücü/admin girişi çalışıyor
+      (kod seviyesinde doğrulandı — canlı Supabase anahtarları gelince uçtan uca test edilecek).
+- [x] Müşteri sipariş akışı: katalog, adres formu (bloc/scară/etaj/apartament/telefon),
+      tek seferlik sipariş (`create_order` RPC) ve abonelik seçimi (`select_subscription_plan`
+      RPC) çalışıyor; `npm run dev`, `npm run build`, `npm run lint` hatasız.
+- [ ] Gerçek Supabase projesi henüz yok — migration'lar canlıya uygulanmadı, Auth UI akışları
+      (signUp/signIn, e-posta onayı zamanlaması) gerçek anahtarlarla henüz test edilmedi.
+- [ ] Abonelik/kredi yönetimi (duraklat/iptal/kredi yükleme), admin paneli, kurye arayüzü,
+      dispatch/atama UI'ı henüz yazılmadı (bkz. GOREVLER.md Görev 4/5/6).
 
 ## Kurulum
 

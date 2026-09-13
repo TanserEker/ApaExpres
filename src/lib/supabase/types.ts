@@ -10,12 +10,14 @@ export type ZoneRow = {
   name: string;
   city: string;
   is_active: boolean;
+  delivery_fee: number; // 0010_ilk_faz_5l_katalog.sql
   created_at: string;
 };
 
 export type ProductRow = {
   id: string;
   name: string;
+  brand: string | null; // 0010_ilk_faz_5l_katalog.sql
   size_liters: number;
   unit_price: number;
   deposit_price: number;
@@ -79,8 +81,10 @@ export type DeliveryAddressRow = {
   customer_id: string;
   zone_id: string;
   block: string | null;
+  staircase: string | null; // scară (0012_teslimat_adresi_alanlari.sql)
   floor: string | null;
   apartment: string | null;
+  phone: string | null; // bu adrese özel teslimat telefonu (0012_teslimat_adresi_alanlari.sql)
   notes: string | null;
   lat: number | null;
   lng: number | null;
