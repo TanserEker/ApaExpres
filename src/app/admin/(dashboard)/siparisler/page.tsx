@@ -15,7 +15,7 @@ export default async function AdminOrdersPage({
   let query = service
     .from("orders")
     .select(
-      "id, created_at, status, payment_method, total_amount, driver_id, customers(name, phone), delivery_addresses(block, staircase, floor, apartment), drivers(name)"
+      "id, created_at, status, payment_method, total_amount, driver_id, receipt_number, customers(name, phone), delivery_addresses(block, staircase, floor, apartment), drivers(name)"
     )
     .order("created_at", { ascending: false })
     .limit(100);

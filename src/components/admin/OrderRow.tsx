@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { approveOrder, assignDriver, type AdminActionState } from "@/app/actions/admin-orders";
+import { approveOrder, assignDriver, setReceiptNumber, type AdminActionState } from "@/app/actions/admin-orders";
 
 type Order = {
   id: string;
@@ -10,6 +10,7 @@ type Order = {
   payment_method: string;
   total_amount: number;
   driver_id: string | null;
+  receipt_number: string | null;
   customers: { name: string; phone: string } | null;
   delivery_addresses: {
     block: string | null;
@@ -31,6 +32,7 @@ export default function OrderRow({
 }) {
   const [approveState, approveAction, approvePending] = useActionState(approveOrder, initialState);
   const [assignState, assignAction, assignPending] = useActionState(assignDriver, initialState);
+  const [receiptState, receiptAction, receiptPending] = useActionState(setReceiptNumber, initialState);
 
   const address = order.delivery_addresses;
 
@@ -87,8 +89,30 @@ export default function OrderRow({
           </form>
         )}
 
-        {(approveState.error || assignState.error) && (
-          <p className="w-full text-xs text-red-600">{approveState.error ?? assignState.error}</p>
+        {order.status !== "cancelled" && (
+          <form action={receiptAction} className="flex items-center gap-1">
+            <input type="hidden" name="orderId" value={order.id} />
+            <input
+              name="receiptNumber"
+              defaultValue={order.receipt_number ?? ""}
+              placeholder="Fiş no"
+              required
+              className="w-24 rounded border border-[#0B4F8A]/30 px-2 py-1.5"
+            />
+            <button
+              type="submit"
+              disabled={receiptPending}
+              className="rounded border border-[#0B4F8A]/30 px-3 py-1.5 text-[#0B4F8A] disabled:opacity-60"
+            >
+              Fiş no kaydet
+            </button>
+          </form>
+        )}
+
+        {(approveState.error || assignState.error || receiptState.error) && (
+          <p className="w-full text-xs text-red-600">
+            {approveState.error ?? assignState.error ?? receiptState.error}
+          </p>
         )}
       </div>
     </div>

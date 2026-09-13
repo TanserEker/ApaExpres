@@ -35,6 +35,34 @@ export async function approveOrder(
   return {};
 }
 
+// Görev 9: fiş/fatura no alanı. Ödeme tahsil edildikten sonra admin, taşınabilir
+// yazar kasadan çıkan bon fiscal numarasını siparişe elle işliyor (bkz.
+// 0020_fis_no_alani.sql). Düz bir alan güncellemesi olduğu için RPC'ye gerek yok,
+// requireAdmin() + service role yeterli (bkz. admin-catalog.ts'teki aynı desen).
+export async function setReceiptNumber(
+  _prev: AdminActionState,
+  formData: FormData
+): Promise<AdminActionState> {
+  const parsed = z
+    .object({ orderId: z.string().uuid(), receiptNumber: z.string().trim().min(1) })
+    .safeParse({
+      orderId: formData.get("orderId"),
+      receiptNumber: formData.get("receiptNumber"),
+    });
+  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? "invalid_form" };
+
+  await requireAdmin();
+  const service = createServiceClient();
+  const { error } = await service
+    .from("orders")
+    .update({ receipt_number: parsed.data.receiptNumber })
+    .eq("id", parsed.data.orderId);
+  if (error) return { error: error.message };
+
+  revalidatePath("/admin/siparisler");
+  return {};
+}
+
 export async function assignDriver(
   _prev: AdminActionState,
   formData: FormData

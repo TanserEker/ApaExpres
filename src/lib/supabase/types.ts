@@ -114,6 +114,7 @@ export type OrderRow = {
   vehicle_id: string | null;
   created_at: string;
   delivered_at: string | null;
+  receipt_number: string | null; // bon fiscal no (0020_fis_no_alani.sql)
 };
 
 export type OrderItemRow = {
