@@ -7,6 +7,7 @@ import type {
 } from "@/lib/supabase/types";
 import SubscriptionRow from "@/components/customer/SubscriptionRow";
 import CreditPackCard from "@/components/customer/CreditPackCard";
+import NotificationOptIn from "@/components/site/NotificationOptIn";
 
 // Görev 4: müşteri panelinde plan seçme/kredi bakiyesi. Abonelik SEÇİMİ (yeni plana
 // kaydolma) checkout'ta kalıyor (bkz. Görev 3) — burası mevcut abonelik(ler)i
@@ -40,6 +41,8 @@ export default async function AccountPage() {
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-8 px-4 py-10">
       <h1 className="text-2xl font-semibold text-[#0B4F8A]">Hesabım</h1>
+
+      <NotificationOptIn />
 
       <section className="flex flex-col gap-2">
         <h2 className="font-medium text-[#0A2540]">Kredi bakiyesi</h2>

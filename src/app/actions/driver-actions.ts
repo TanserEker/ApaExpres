@@ -3,6 +3,13 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
+import { notifyCustomer } from "@/lib/web-push";
+
+const STATUS_MESSAGES: Record<string, string> = {
+  picked_up: "Kuryeniz yola çıktı.",
+  delivered: "Siparişiniz teslim edildi.",
+  cancelled: "Siparişiniz iptal edildi.",
+};
 
 // update_delivery_status (bkz. 0011/0017) kendi içinde is_own_driver kontrolü
 // yapıyor (SECURITY DEFINER) — authenticated client üzerinden çağırmak yeterli,
@@ -36,6 +43,19 @@ export async function updateDeliveryStatus(
     p_photo_path: parsed.data.photoPath ?? null,
   });
   if (error) return { error: error.message };
+
+  // Bildirim (Görev 7, opsiyonel) - sürücünün kendi RLS kapsamı zaten
+  // "kendine atanan siparişi" içerdiği için (is_own_driver), service role
+  // gerekmeden okunabiliyor.
+  const { data: assignment } = await supabase
+    .from("driver_assignments")
+    .select("orders(customer_id)")
+    .eq("id", parsed.data.assignmentId)
+    .maybeSingle();
+  const order = Array.isArray(assignment?.orders) ? assignment.orders[0] : assignment?.orders;
+  if (order?.customer_id) {
+    await notifyCustomer(order.customer_id, "Apa Expres", STATUS_MESSAGES[parsed.data.newStatus]);
+  }
 
   revalidatePath("/[locale]/kurye", "page");
   return {};

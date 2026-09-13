@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/server";
 import SiteHeader from "@/components/site/SiteHeader";
+import ServiceWorkerRegister from "@/components/site/ServiceWorkerRegister";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -20,6 +21,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Apa Expres",
   description: "Cosmopolis'te 1 saat icinde kapinizda 5L su teslimati.",
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/icon-192.png",
+    apple: "/apple-touch-icon.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B4F8A",
 };
 
 export function generateStaticParams() {
@@ -51,6 +61,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col bg-white text-[#0A2540]">
         <NextIntlClientProvider locale={locale}>
+          <ServiceWorkerRegister />
           <SiteHeader isLoggedIn={Boolean(user)} />
           <main className="flex flex-1 flex-col">{children}</main>
         </NextIntlClientProvider>

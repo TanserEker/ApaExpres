@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import AssignmentCard, { type Assignment } from "@/components/kurye/AssignmentCard";
+import NotificationOptIn from "@/components/site/NotificationOptIn";
 
 // types.ts'teki Database = any olduğu için supabase-js, join edilen tabloları
 // (customers/delivery_addresses/orders) varsayılan olarak dizi türünde çıkarıyor
@@ -72,6 +73,8 @@ export default async function DriverDashboardPage() {
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-6 px-4 py-10">
       <h1 className="text-2xl font-semibold text-[#0B4F8A]">Merhaba, {driver.name}</h1>
+
+      <NotificationOptIn />
 
       <section className="flex flex-col gap-3">
         <h2 className="font-medium text-[#0A2540]">Atanan siparişler</h2>
