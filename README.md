@@ -87,3 +87,64 @@ oluşturma hem de örnek insert/foreign key/check constraint testleri hatasız g
 
 Bu üç madde netleşince Onur ile birlikte sıradaki geliştirme adımı (Supabase projesine
 migration'ların uygulanması + admin panel/PWA akışlarının kurulması) planlanabilir.
+
+### Alternatif tedarik yolu — kendi markanla fason şişeleme (henüz karar verilmedi)
+
+Toptan alım yerine Romanya'da bir su üreticisine (Zizin, Cumpana, Beviaqua, Izvoria gibi
+firmalara — 19L dispenser hattı olan, private-label/fason şişeleme yapan üreticiler)
+**Apa Expres markasıyla** kendi 19L bidonunu şişelettirme seçeneği araştırıldı. Bu yola
+gidilirse, marka sahibi olarak (üretim izinleri zaten üreticide olduğu için) gereken adımlar:
+
+| Adım | Maliyet | Süre |
+|---|---|---|
+| CAEN kod ekleme (ONRC mențiune) | ~152 lei | Birkaç iş günü |
+| DSVSA gıda işletmecisi kaydı (domeniul nonanimal, "înregistrare") | Genelde ücretsiz | Birkaç gün-hafta |
+| OSIM marka tescili (opsiyonel ama önerilir) | ~1.000-1.800 lei | 8-10 ay |
+| GS1 Romania barkod (sadece market rafına girecekse gerekli) | ~9 EUR/kod | Birkaç gün |
+| SGR kaydı (sadece 0,1-3L format seçilirse) | Ücretsiz | Satıştan **en az 30 gün önce** |
+
+Su kategorisi olarak "apă minerală naturală" değil **"apă de izvor"** seçilmesi öneriliyor —
+üreticinin zaten sahip olduğu ruhsata dayanır, yeni kaynak tanınma sürecine girmeye gerek
+kalmaz. Marka tescili beklenmeden satışa başlanabilir (tescil geriye dönük koruma sağlamaz
+ama satışı bloke etmez). Bu seçenek şu an sadece bir alternatif olarak not edildi, öncelik
+hâlâ mevcut toptan tedarik (METRO/Barbarossa) üzerinden ilerlemek.
+
+### İlk faz — 5L katalog (bkz. `0010_ilk_faz_5l_katalog.sql`)
+
+SGR kapsamı dışı (0,1-3L değil), bu yüzden RetuRO kaydı beklenmeden bu hafta satışa
+başlanabilir. Fiyatlandırma METRO toptan + Carrefour/Kaufland/Penny (Glovo üzerinden,
+2026-09-10 tarihli) rakip fiyat araştırmasına dayanır — detaylar migration dosyasının
+başındaki yorumlarda. `zones.delivery_fee` de aynı araştırmadan: gözlemlenen en düşük
+rakip teslimat ücretinin (Carrefour, Cosmopolis içi, 9,99 RON) %15 altı.
+
+**Ürün adet seçici notu:** 5L su genelde 2'li paketler halinde satılıyor/tüketiliyor —
+müşteri arayüzünde adet seçici 1'er değil **2'şer artmalı** (2-4-6-8...). Tek şişelik
+sipariş matematiksel olarak zarar etmiyor (bkz. kâr-zarar hesabı, sohbet geçmişi) ama
+doğal tüketim alışkanlığına uymuyor; 2'li artış hem UX'i basitleştirir hem ortalama sepet
+büyüklüğünü organik olarak yükseltir.
+
+## Yasal gereklilikler (2026-09-10 tarihli araştırma)
+
+**Şirket/CAEN:** DEEF SRL üzerinden yürütülüyor, yeni tüzel kişilik gerekmiyor — sadece
+perakende içecek/e-ticaret satışına uygun bir CAEN kodu eklenmeli (bkz. "Tanser'in yapması
+gerekenler").
+
+**ANSVSA gıda güvenliği kaydı (gerekli):** üretici değil, paketlenmiş ürün depolayıp
+dağıtan bir işletme olarak "Domeniul Nonanimal" kapsamında bir **kayıt** (înregistrare,
+tam yetkilendirme değil) gerekiyor — form: "Cerere Model Pentru Inregistrare Siguranta
+Alimentelor - Domeniul Nonanimal", yerel DSVSA'ya başvurulur. Kategori: hayvansal olmayan
+gıda deposu.
+
+**Fatura/fiş yaklaşımı — bon fiscal, e-Factura değil:** RO e-Factura 2026 itibariyle
+B2C dahil zorunlu hale geldi (her fatura ANAF SPV'ye 5 iş günü içinde gönderilmeli) —
+AMA bu zorunluluk **factură** (resmi fatura) için geçerli, **bon fiscal** (yazar kasa
+fişi) için değil. ANAF'ın kendi kaynağına göre bir bon fiscal satışında SPV'ye gönderim
+sadece müşteri açıkça resmi fatura talep ederse gerekiyor. Bu yüzden plan: DEEF üzerine
+**sanal pos + yazar kasa** (mobil/taşınabilir fiskal cihaz) alınacak, her sipariş bon
+fiscal ile kapatılacak, bonlar 2 günde bir muhasebeciye iletilecek. Bu, e-Factura API
+entegrasyonu geliştirmekten çok daha basit ve tamamen yasal — sadece nadir bir müşteri
+resmi fatura isterse o tekil işlem için 5 iş günü içinde SPV'ye gönderim gerekir.
+
+**E-ticaret/mesafeli satış standartları:** Termeni și Condiții, Politica de Confidențialitate
+(GDPR — ad/adres/telefon toplandığı için), çerez politikası, ANPC/SOL bağlantısı. Su gibi
+çabuk tüketilen bir ürün için cayma hakkı büyük ölçüde istisna kapsamına girer.
