@@ -47,6 +47,11 @@ listesini kapsar):
 | `0011_admin_rolu_ve_rls.sql` | `admins` tablosu + `is_admin()` (3. rol), sürücü için `update_delivery_status()` RPC'si |
 | `0012_teslimat_adresi_alanlari.sql` | `delivery_addresses.staircase` (scară) ve `.phone` — Cosmopolis adres formu için |
 | `0013_siparis_ve_abonelik_secimi_rpc.sql` | `create_order()` ve `select_subscription_plan()` RPC'leri |
+| `0014_abonelik_kredi_rpc.sql` | `purchase_credit_pack()`, `update_subscription_status()`, `admin_adjust_credit()`, `admin_update_subscription()`, `create_order()`'a `credit_balance` ödeme yolu |
+| `0015_abonelik_planlari_taslak_seed.sql` | TASLAK abonelik/kredi paketi satırları (`is_active=false`, Tanser onayı bekliyor) |
+| `0016_admin_siparis_kurye_rpc.sql` | `approve_order()`, `assign_driver()` |
+| `0017_teslimat_fotografi.sql` | `driver_assignments.delivery_photo_path`, `teslimat-fotograflari` storage bucket + RLS, `update_delivery_status()`'a fotoğraf desteği |
+| `0018_kurye_musteri_adres_erisimi.sql` | sürücünün kendine atanan siparişin müşteri/adres bilgisini görebilmesi için dar kapsamlı select policy'leri |
 
 Her tabloda RLS **açık**. Katalog tabloları (`zones`, `products`, `subscription_plans`) ve
 `capacity_slots` dışında hiçbir tabloda anon/authenticated için insert/update/delete
@@ -83,11 +88,21 @@ segmentinin dışında (tek dilli iç panel) — bu yüzden kendi ayrı root lay
       (kod seviyesinde doğrulandı — canlı Supabase anahtarları gelince uçtan uca test edilecek).
 - [x] Müşteri sipariş akışı: katalog, adres formu (bloc/scară/etaj/apartament/telefon),
       tek seferlik sipariş (`create_order` RPC) ve abonelik seçimi (`select_subscription_plan`
-      RPC) çalışıyor; `npm run dev`, `npm run build`, `npm run lint` hatasız.
-- [ ] Gerçek Supabase projesi henüz yok — migration'lar canlıya uygulanmadı, Auth UI akışları
-      (signUp/signIn, e-posta onayı zamanlaması) gerçek anahtarlarla henüz test edilmedi.
-- [ ] Abonelik/kredi yönetimi (duraklat/iptal/kredi yükleme), admin paneli, kurye arayüzü,
-      dispatch/atama UI'ı henüz yazılmadı (bkz. GOREVLER.md Görev 4/5/6).
+      RPC) çalışıyor.
+- [x] Canlı Supabase projesi var (Vercel'de yayında: apaexpres.deeftech.online) —
+      0001-0013 canlıya uygulandı ve gerçek anahtarlarla uçtan uca test edildi
+      (signUp/signIn, RLS izolasyonu, create_order kapasite/saat kontrolü).
+- [x] Abonelik + kredi UI (Hesabım sayfası, kredi paketi satın alma, abonelik
+      duraklat/iptal), admin paneli (sipariş onay/atama, katalog CRUD, kurye
+      provizyonu, kapasite yönetimi), kurye arayüzü (atanan siparişler, durum
+      güncelleme, opsiyonel teslimat fotoğrafı) tamamlandı — `npm run build`,
+      `npm run lint` hatasız, tüm yeni RPC/RLS'ler yerel Postgres'te test edildi.
+- [ ] 0014-0018 migration'ları henüz canlıya uygulanmadı (Hakan uygulayacak) —
+      bu yüzden Görev 4/5/6'nın gerçek Supabase üzerinde uçtan uca doğrulaması
+      bekliyor.
+- [ ] subscription_plans satırları TASLAK ve `is_active = false` (bkz.
+      `0015_abonelik_planlari_taslak_seed.sql`) — Tanser'in sıklık/fiyat/paket
+      kararını bekliyor.
 
 ## Kurulum
 
