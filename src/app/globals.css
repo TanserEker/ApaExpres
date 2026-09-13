@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Marka için karanlık tema tasarlanmadı - tarayıcı form kontrolleri
+   (date/time input, checkbox vb.) işletim sistemi karanlık modundaysa bile
+   hep açık temada çizilsin diye tek/açık tema sabitleniyor. */
+:root {
+  color-scheme: light;
+}
+
 /* Sadece font-family - arka plan/metin rengi kasıtlı olarak burada YOK. Eskiden
    burada `prefers-color-scheme: dark` ile değişen CSS değişkenlerine bağlı bir
    `body { background: var(--background); color: var(--foreground); }` kuralı
