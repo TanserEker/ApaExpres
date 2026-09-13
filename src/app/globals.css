@@ -1,26 +1,21 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Sadece font-family - arka plan/metin rengi kasıtlı olarak burada YOK. Eskiden
+   burada `prefers-color-scheme: dark` ile değişen CSS değişkenlerine bağlı bir
+   `body { background: var(--background); color: var(--foreground); }` kuralı
+   vardı (create-next-app varsayılanı, hiç temizlenmemiş) - Tailwind v4'te
+   @import ile gelen utility'ler (bg-white, text-[#0A2540] vb.) katmanlı
+   (@layer) olduğu için, bu dosyadaki katmansız (unlayered) kural CSS Cascade
+   Layers kuralı gereği HER ZAMAN kazanıyordu (katmansız kurallar özgüllükten
+   bağımsız olarak katmanlı kuralları ezer). Sonuç: tarayıcı/işletim sistemi
+   karanlık modda ise gerçek body arka planı siyaha, metni beyaza dönüyordu -
+   [locale]/layout.tsx ve admin/layout.tsx'teki "bg-white"/"bg-[#0A2540]" gibi
+   kasıtlı Tailwind sınıfları görmezden geliniyordu. Kendi arka planı olmayan
+   öğeler (ör. Footer) bu koyu body zemini üzerinde koyu metinle kalıyor,
+   neredeyse hiç kontrast olmuyordu (Lighthouse'un bulduğu asıl sebep buydu,
+   önceki opaklık düzeltmesi farklı - ama gerçek - bir sorunu çözmüştü).
+   Marka için karanlık mod tasarlanmadığı için bu davranış tamamen kaldırıldı;
+   her layout kendi arka plan/metin rengini Tailwind sınıflarıyla belirliyor. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
