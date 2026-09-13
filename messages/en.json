@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "orders": "My orders",
+    "login": "Sign in",
+    "register": "Create account",
+    "logout": "Sign out",
+    "courier": "Courier"
+  },
+  "home": {
+    "title": "Apa Expres",
+    "tagline": "In Cosmopolis, your water arrives in 1 hour.",
+    "description": "5L bottles from trusted brands, delivered fast straight to your door in the Cosmopolis complex.",
+    "cta": "See the catalog"
+  },
+  "auth": {
+    "loginTitle": "Sign in",
+    "registerTitle": "Create account",
+    "name": "Full name",
+    "phone": "Phone",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Sign in",
+    "registerButton": "Create account",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "checkEmail": "Your account was created. Check your email to confirm your address before signing in.",
+    "genericError": "Something went wrong, please try again.",
+    "invalidCredentials": "Incorrect email or password."
+  },
+  "catalog": {
+    "title": "Catalog — 5L bottles",
+    "empty": "There are no active products right now.",
+    "addToCart": "Add to cart",
+    "quantityHint": "Ordered in steps of 2.",
+    "goToCheckout": "Go to checkout",
+    "cartEmpty": "Your cart is empty.",
+    "cartTitle": "Your cart",
+    "total": "Total"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "addressTitle": "Delivery address (Cosmopolis)",
+    "block": "Block",
+    "staircase": "Staircase",
+    "floor": "Floor",
+    "apartment": "Apartment",
+    "phone": "Contact phone",
+    "notes": "Notes (optional)",
+    "saveAddress": "Save address",
+    "chooseAddress": "Choose address",
+    "orderType": "Order type",
+    "oneTime": "One-time order",
+    "subscription": "Subscription",
+    "paymentMethod": "Payment method",
+    "cash": "Cash on delivery",
+    "card": "Card on delivery",
+    "submit": "Place order",
+    "subscriptionSubmit": "Subscribe",
+    "noPlans": "There are no active subscription plans right now.",
+    "outsideHours": "We deliver daily between 09:00 and 20:00. Your order will be sent within that window.",
+    "success": "Your order was placed successfully!",
+    "subscriptionSuccess": "You subscribed successfully!"
+  },
+  "orders": {
+    "title": "My orders",
+    "empty": "You don't have any orders yet.",
+    "status": {
+      "received": "Received",
+      "preparing": "Preparing",
+      "on_the_way": "On the way",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    }
+  },
+  "courier": {
+    "loginTitle": "Courier sign in"
+  },
+  "admin": {
+    "loginTitle": "Admin sign in"
+  }
+}

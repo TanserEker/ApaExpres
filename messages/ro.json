@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "home": "Acasă",
+    "catalog": "Catalog",
+    "orders": "Comenzile mele",
+    "login": "Autentificare",
+    "register": "Creează cont",
+    "logout": "Ieșire",
+    "courier": "Curier"
+  },
+  "home": {
+    "title": "Apa Expres",
+    "tagline": "În Cosmopolis, apa ta ajunge în 1 oră.",
+    "description": "Bidoane de 5L de la mărci de încredere, livrate rapid direct la ușa ta în complexul Cosmopolis.",
+    "cta": "Vezi catalogul"
+  },
+  "auth": {
+    "loginTitle": "Autentificare",
+    "registerTitle": "Creează cont",
+    "name": "Nume complet",
+    "phone": "Telefon",
+    "email": "E-mail",
+    "password": "Parolă",
+    "loginButton": "Intră în cont",
+    "registerButton": "Creează cont",
+    "noAccount": "Nu ai cont?",
+    "haveAccount": "Ai deja cont?",
+    "checkEmail": "Contul a fost creat. Verifică e-mailul pentru a confirma adresa înainte de a te autentifica.",
+    "genericError": "Ceva nu a mers bine, încearcă din nou.",
+    "invalidCredentials": "E-mail sau parolă incorectă."
+  },
+  "catalog": {
+    "title": "Catalog — bidoane de 5L",
+    "empty": "Momentan nu există produse active.",
+    "addToCart": "Adaugă în coș",
+    "quantityHint": "Se comandă din 2 în 2 bucăți.",
+    "goToCheckout": "Finalizează comanda",
+    "cartEmpty": "Coșul este gol.",
+    "cartTitle": "Coșul tău",
+    "total": "Total"
+  },
+  "checkout": {
+    "title": "Finalizare comandă",
+    "addressTitle": "Adresă de livrare (Cosmopolis)",
+    "block": "Bloc",
+    "staircase": "Scară",
+    "floor": "Etaj",
+    "apartment": "Apartament",
+    "phone": "Telefon de contact",
+    "notes": "Observații (opțional)",
+    "saveAddress": "Salvează adresa",
+    "chooseAddress": "Alege adresa",
+    "orderType": "Tip comandă",
+    "oneTime": "Comandă unică",
+    "subscription": "Abonament",
+    "paymentMethod": "Metodă de plată",
+    "cash": "Numerar la livrare",
+    "card": "Card la livrare",
+    "submit": "Trimite comanda",
+    "subscriptionSubmit": "Abonează-te",
+    "noPlans": "Momentan nu există planuri de abonament active.",
+    "outsideHours": "Livrăm zilnic între 09:00 și 20:00. Comanda ta va fi trimisă în acest interval.",
+    "success": "Comanda a fost plasată cu succes!",
+    "subscriptionSuccess": "Te-ai abonat cu succes!"
+  },
+  "orders": {
+    "title": "Comenzile mele",
+    "empty": "Nu ai nicio comandă încă.",
+    "status": {
+      "received": "Primită",
+      "preparing": "În pregătire",
+      "on_the_way": "Pe drum",
+      "delivered": "Livrată",
+      "cancelled": "Anulată"
+    }
+  },
+  "courier": {
+    "loginTitle": "Autentificare curier"
+  },
+  "admin": {
+    "loginTitle": "Autentificare admin"
+  }
+}

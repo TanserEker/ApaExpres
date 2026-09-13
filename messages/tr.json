@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "catalog": "Katalog",
+    "orders": "Siparişlerim",
+    "login": "Giriş yap",
+    "register": "Hesap oluştur",
+    "logout": "Çıkış yap",
+    "courier": "Kurye"
+  },
+  "home": {
+    "title": "Apa Expres",
+    "tagline": "Cosmopolis'te suyunuz 1 saatte kapınızda.",
+    "description": "Güvenilir markalardan 5L su, Cosmopolis kompleksinde hızlıca kapınıza teslim edilir.",
+    "cta": "Kataloğa göz at"
+  },
+  "auth": {
+    "loginTitle": "Giriş yap",
+    "registerTitle": "Hesap oluştur",
+    "name": "Ad soyad",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "password": "Şifre",
+    "loginButton": "Giriş yap",
+    "registerButton": "Hesap oluştur",
+    "noAccount": "Hesabınız yok mu?",
+    "haveAccount": "Zaten hesabınız var mı?",
+    "checkEmail": "Hesabınız oluşturuldu. Giriş yapmadan önce e-postanızı onaylayın.",
+    "genericError": "Bir şeyler ters gitti, lütfen tekrar deneyin.",
+    "invalidCredentials": "E-posta veya şifre hatalı."
+  },
+  "catalog": {
+    "title": "Katalog — 5L su",
+    "empty": "Şu an aktif ürün yok.",
+    "addToCart": "Sepete ekle",
+    "quantityHint": "Sipariş 2'şer adet artar.",
+    "goToCheckout": "Siparişi tamamla",
+    "cartEmpty": "Sepetiniz boş.",
+    "cartTitle": "Sepetiniz",
+    "total": "Toplam"
+  },
+  "checkout": {
+    "title": "Sipariş tamamla",
+    "addressTitle": "Teslimat adresi (Cosmopolis)",
+    "block": "Blok",
+    "staircase": "Giriş (scară)",
+    "floor": "Kat",
+    "apartment": "Daire",
+    "phone": "İletişim telefonu",
+    "notes": "Not (opsiyonel)",
+    "saveAddress": "Adresi kaydet",
+    "chooseAddress": "Adres seç",
+    "orderType": "Sipariş türü",
+    "oneTime": "Tek seferlik sipariş",
+    "subscription": "Abonelik",
+    "paymentMethod": "Ödeme yöntemi",
+    "cash": "Kapıda nakit",
+    "card": "Kapıda kart",
+    "submit": "Siparişi gönder",
+    "subscriptionSubmit": "Abone ol",
+    "noPlans": "Şu an aktif abonelik planı yok.",
+    "outsideHours": "Teslimat saatlerimiz her gün 09:00-20:00 arasıdır. Siparişiniz bu aralıkta gönderilir.",
+    "success": "Siparişiniz başarıyla oluşturuldu!",
+    "subscriptionSuccess": "Aboneliğiniz başarıyla oluşturuldu!"
+  },
+  "orders": {
+    "title": "Siparişlerim",
+    "empty": "Henüz siparişiniz yok.",
+    "status": {
+      "received": "Alındı",
+      "preparing": "Hazırlanıyor",
+      "on_the_way": "Yolda",
+      "delivered": "Teslim edildi",
+      "cancelled": "İptal edildi"
+    }
+  },
+  "courier": {
+    "loginTitle": "Kurye girişi"
+  },
+  "admin": {
+    "loginTitle": "Admin girişi"
+  }
+}
