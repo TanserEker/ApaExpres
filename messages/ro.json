@@ -80,5 +80,18 @@
   },
   "admin": {
     "loginTitle": "Autentificare admin"
+  },
+  "footer": {
+    "terms": "Termeni și Condiții",
+    "privacy": "Confidențialitate",
+    "cookies": "Cookie-uri",
+    "anpc": "ANPC",
+    "sol": "Soluționare online a litigiilor (SOL)",
+    "rights": "Toate drepturile rezervate."
+  },
+  "cookieBanner": {
+    "message": "Folosim doar cookie-uri strict necesare pentru autentificare.",
+    "accept": "Am înțeles",
+    "learnMore": "Detalii"
   }
 }

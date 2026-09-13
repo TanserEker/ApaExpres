@@ -80,5 +80,18 @@
   },
   "admin": {
     "loginTitle": "Admin sign in"
+  },
+  "footer": {
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "anpc": "ANPC",
+    "sol": "Online Dispute Resolution (ODR)",
+    "rights": "All rights reserved."
+  },
+  "cookieBanner": {
+    "message": "We only use strictly necessary cookies for authentication.",
+    "accept": "Got it",
+    "learnMore": "Learn more"
   }
 }

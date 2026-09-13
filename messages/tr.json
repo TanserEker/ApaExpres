@@ -80,5 +80,18 @@
   },
   "admin": {
     "loginTitle": "Admin girişi"
+  },
+  "footer": {
+    "terms": "Kullanım Koşulları",
+    "privacy": "Gizlilik",
+    "cookies": "Çerezler",
+    "anpc": "ANPC",
+    "sol": "Çevrimiçi Uyuşmazlık Çözümü (SOL)",
+    "rights": "Tüm hakları saklıdır."
+  },
+  "cookieBanner": {
+    "message": "Yalnızca kimlik doğrulama için kesinlikle gerekli çerezleri kullanıyoruz.",
+    "accept": "Anladım",
+    "learnMore": "Detaylar"
   }
 }

@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/server";
 import SiteHeader from "@/components/site/SiteHeader";
+import Footer from "@/components/site/Footer";
+import CookieNotice from "@/components/site/CookieNotice";
 import ServiceWorkerRegister from "@/components/site/ServiceWorkerRegister";
 import "../globals.css";
 
@@ -64,6 +66,8 @@ export default async function LocaleLayout({
           <ServiceWorkerRegister />
           <SiteHeader isLoggedIn={Boolean(user)} />
           <main className="flex flex-1 flex-col">{children}</main>
+          <Footer />
+          <CookieNotice />
         </NextIntlClientProvider>
       </body>
     </html>
