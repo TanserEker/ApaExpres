@@ -22,9 +22,14 @@ export default function SiteHeader({ isLoggedIn }: { isLoggedIn: boolean }) {
           {t("catalog")}
         </Link>
         {isLoggedIn && (
-          <Link href="/orders" className="hover:text-[#0B4F8A]">
-            {t("orders")}
-          </Link>
+          <>
+            <Link href="/orders" className="hover:text-[#0B4F8A]">
+              {t("orders")}
+            </Link>
+            <Link href="/account" className="hover:text-[#0B4F8A]">
+              {t("account")}
+            </Link>
+          </>
         )}
         {isLoggedIn ? (
           <form action={logoutCustomer.bind(null, locale)}>

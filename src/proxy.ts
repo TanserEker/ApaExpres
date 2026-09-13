@@ -62,9 +62,13 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL(`${prefix}/kurye/giris`, request.url));
   }
 
-  // Sipariş vermek/geçmişi görmek için müşteri girişi gerekiyor - create_order RPC'si
-  // zaten auth.uid() olmadan çalışmıyor, burası sadece kullanıcıyı erken uyarıyor.
-  if ((path === "/checkout" || path.startsWith("/orders")) && !user) {
+  // Sipariş vermek/geçmişi ve hesabı görmek için müşteri girişi gerekiyor -
+  // create_order/subscriptions RPC'leri zaten auth.uid() olmadan çalışmıyor,
+  // burası sadece kullanıcıyı erken uyarıyor.
+  if (
+    (path === "/checkout" || path.startsWith("/orders") || path.startsWith("/account")) &&
+    !user
+  ) {
     const loginUrl = new URL(`${prefix}/login`, request.url);
     loginUrl.searchParams.set("next", path);
     return NextResponse.redirect(loginUrl);

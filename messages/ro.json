@@ -6,7 +6,8 @@
     "login": "Autentificare",
     "register": "Creează cont",
     "logout": "Ieșire",
-    "courier": "Curier"
+    "courier": "Curier",
+    "account": "Contul meu"
   },
   "home": {
     "title": "Apa Expres",

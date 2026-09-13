@@ -6,7 +6,8 @@
     "login": "Sign in",
     "register": "Create account",
     "logout": "Sign out",
-    "courier": "Courier"
+    "courier": "Courier",
+    "account": "My account"
   },
   "home": {
     "title": "Apa Expres",
